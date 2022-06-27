@@ -1,24 +1,21 @@
 
-# x-route-builder
+# neujs
 
-A light-weight utility for creating file based routing in frameworks like express.
+A light-weight and quick http server framework. Makes use of ES6 async/await and module syntax.
 
 
 ## Features:
 
-- File-based routing.
-- Can ignore files.
-- Can alter the file's route that is created.
-- Dynamic routes (`req.params`) - File:`[id].js` - Will be altered to `/:id`.
-- Dynamic middleware - Place `_middleware.js` file in routes directory. The middleware will be applied to all routes inside the directory but will not be applied to routes above the directory.
-- Fully customizable.
-- Will log the output if in development env.
+- Can use file-based routing.
+- Can add replacer to auto routing.
+- Async/Await.
+- Centralized error handling.
 
 <br />
 
 # Table of Contents
 1. [ Install ](#install) <br />
-2. [ Usage ](#examples) <br />
+2. [ Getting Started ](#examples) <br />
 
 <br />
 
@@ -26,7 +23,7 @@ A light-weight utility for creating file based routing in frameworks like expres
 ## Install
 
 ```console
-npm i x-route-builder 
+npm i neujs 
 ```
 
 <br />
