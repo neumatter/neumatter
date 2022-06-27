@@ -1,0 +1,59 @@
+<html>
+    {{# importBlock('../blocks/Head') #}}
+  <body>
+<nav data-nav="top" data-offset="navbar" class="c-navbar a-bg/dark-blur u-fixed u-top" role="navigation" aria-label="main navigation">
+  <div class="c-navbar-wrapper" data-theme="dark">
+    <div id="navbarNM" class="c-menu u-flex-row">
+      <button id="gobackhistory" class="c-nav-link u-flex-grow/1 t-align/center a-rounded/50 a-bg/concave:active a-bg/concave:hover"><span class="text-nowrap">
+        <i class="bi bi-arrow-left-circle-fill"></i> back
+      </button>
+      <a class="c-nav-link u-flex-grow/1 t-align/center a-rounded/50 a-bg/concave:active a-bg/concave:hover" href="/"><span class="text-nowrap">
+        <svg style="width:30px;height:30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 180 180" xml:space="preserve">
+          <path style="fill:white" d="M90,3.4L15,46.7v86.6l75,43.3l75-43.3V46.7L90,3.4z M155.6,115.4h-10.9V81c0-0.7,0.1-2,0.2-3.8c-0.5,0.8-1.1,1.6-1.8,2.4
+	          l-23,27.9h-3.2l-23-27.9c-0.2-0.2-1.1-1.3-2-2.6v38.4h-6.7l-0.2-0.2L39,80.7c-0.3-0.2-0.6-0.5-0.9-0.7c-1.2-0.8-2.3-1.7-3.3-2.7
+	          c0.3,2.9,0.3,5.7,0.3,8v30.2H24.2V63.9h7.4l0.1,0.1l44.7,33.3c1.7,1.3,3.4,2.8,4.9,4.3c-0.4-3.2-0.5-6.4-0.5-9.6V63.9h10.9
+	          l26.7,31.9l26.7-31.9h10.4L155.6,115.4z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="l-row l-has-sidebar u-flex-shrink/0 u-mx/0 u-min-vh/100 u-mb/0 c-webkit-scrollbars">
+<div class="l-sidebar:md a-bg-color/1">
+    <div class="l-wrapper/viewport:md">
+        <div class="u-offset/4"></div>
+        <p id="npmCopy" class="u-m/system-50 u-p/system-50 a-rounded/50 a-bg-color/1 a-glow/primary t-type/secondary a-text-color/base">
+            <b>{{ locals.currentUrl }}</b>
+        </p>
+        <button class="c-btn c-theme-btn a-bg/convex-small a-rounded/50 a-bg/concave:hover u-m/system-50" data-btn="light" id="c-theme-btn/light">
+            <i id="btni" class="bi bi-sun-fill"></i>
+        </button>
+        <button class="c-btn c-theme-btn a-bg/convex-small a-rounded/50 a-bg/concave:hover u-m/system-50" data-btn="dark" id="c-theme-btn/dark">
+            <i id="btni" class="bi bi-moon-fill"></i>
+        </button>
+        <nav id="myNavbar2" class="c-navbar a-rounded u-position/sticky u-top/5" role="navigation" aria-label="main navigation">
+            <div class="c-navbar-wrapper">
+                <div id="navbarNM" class="c-menu c-tabs">
+
+                    <input type="radio" data-nav="tab" name="tab" id="tab-1"/>
+                    <label for="tab-1">
+                        <a class="c-nav-link u-mt/system-50 a-bg/convex-small a-rounded/50 a-bg/concave:hover">
+                          <b>{{ locals.currentUrl }}</b>
+                        </a>
+                    </label>
+
+                      <div class="c-tab">
+                          <a class="c-nav-link a-rounded/50 a-bg/concave:hover a-bg/concave:active a-text-color/n1" href="#">minor.version</a>
+                      </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+    {{# import Body #}}
+    <script type="text/javascript" src="/js/n.js"></script>
+    <script type="text/javascript" src="/js/neumatter.js"></script>
+  </body>
+</html>

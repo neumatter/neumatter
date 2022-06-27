@@ -1,0 +1,11 @@
+config:
+  target: "http://localhost:3004"
+  phases:
+    - duration: 10
+      arrivalRate: 50
+
+scenarios:
+  - name: "Get nm/id"
+    flow:
+      - get:
+          url: "/home/products/NM587/id32"

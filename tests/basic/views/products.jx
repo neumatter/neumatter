@@ -1,0 +1,15 @@
+
+{{# extends App #}}
+
+{{# block Body #}}
+
+{{# console.log(locals) #}}
+{{# console.log(locals.isActive('/home/products/NM587/id32')) #}}
+<p>/products/:sku="{{ sku }}"/:id="{{ id }}"</p>
+{{# for el of items #}}
+<p>{{ el }}</p>
+{{# endFor #}}
+
+<demo-element></demo-element>
+
+{{# end Body #}}
