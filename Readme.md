@@ -3,6 +3,7 @@
 
 A light-weight and quick http server framework. ES6 async/await and ECMAScript modules.
 
+  [![NPM Version][npm-version-image]][npm-url]
 
 ## Features:
 
