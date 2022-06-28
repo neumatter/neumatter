@@ -1,5 +1,5 @@
 {
-  "name": "neujs",
+  "name": "@neumatter/neujs",
   "version": "1.0.0-beta.0",
   "description": "A light-weight and quick http server framework. ES6.",
   "type": "module",

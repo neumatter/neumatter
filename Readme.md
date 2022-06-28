@@ -1,5 +1,5 @@
 
-# neujs
+# @neumatter/neujs
 
 A light-weight and quick http server framework. ES6 async/await and ECMAScript modules.
 
@@ -31,7 +31,7 @@ A light-weight and quick http server framework. ES6 async/await and ECMAScript m
 ## Install
 
 ```console
-npm i neujs --save
+npm i @neumatter/neujs --save
 ```
 
 <br />
