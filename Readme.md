@@ -1,21 +1,29 @@
 
 # neujs
 
-A light-weight and quick http server framework. Makes use of ES6 async/await and module syntax.
+A light-weight and quick http server framework. ES6 async/await and ECMAScript modules.
 
 
 ## Features:
 
-- Can use file-based routing.
-- Can add replacer to auto routing.
+- ECMAScript modules.
+- Latest javascript features.
+- Support for global fetch.
+- Built in support for using dot env files.
+- Built in configurable headers.
+- Built in logger.
+- Support for file-based routing.
+- Can add replacer to file-based routing.
 - Async/Await.
 - Centralized error handling.
 
 <br />
 
-# Table of Contents
-1. [ Install ](#install) <br />
-2. [ Getting Started ](#examples) <br />
+## Table of Contents
+- [ Installation ](#install)
+- [ Getting Started ](#getting-started)
+    - [ Configuration File ](#configuration-file)
+    - [ Constructor ](#constructor)
 
 <br />
 
@@ -23,59 +31,91 @@ A light-weight and quick http server framework. Makes use of ES6 async/await and
 ## Install
 
 ```console
-npm i neujs 
+npm i neujs --save
 ```
 
 <br />
 
-<a name="examples"></a>
-## Usage
+<a name="getting-started"></a>
+## Getting Started
 
 
-### Standard:
+<a name="configuration-file"></a>
+### Configuration File:
 
-```js
-const Xrouter = require('x-route-builder')
-
-// create the route builder passing in (app)
-const xRouter = new XrouteBuilder({
-  app: app,
-})
-
-// build the routes
-xRouter.build()
+```json
+{
+  "env": {
+    "port": 3004,
+    "static": "./public",
+    "context": "testCTX",
+    "viewer": {
+      "views": "./views",
+      "blocks": "./views/blocks",
+      "layouts": "./views/layouts"
+    }
+  },
+  "middleware": "./server/middleware",
+  "routes": "./server/routes"
+}
 ```
+
+
+<a name="constructor"></a>
+### Constructor:
 
 
 ### Options:
 
-```js
-const Xrouter = require('x-route-builder')
+- parseMethod: `string` Method that will be used to parse `NeuRequest.body`.
+- errorMiddleware: `function` Error Handler.
+- proxy: `boolean`
+- env: `string`
+- port: `number`
+- host: `string`
+- static: `string`
+- views: `string`
+- context: `object`
+- configureHeaders: `object`
+- viewer: `object`
+- logger: `LoggerOptions`
 
-// create the route builder passing in (app & options)
-const xRouter = new XrouteBuilder({
-  // app
-  app: app,
-  // directory path to start reading and building routes in
-  dirpath: path.join(__dirname, 'routes'),
-  // base path to start routes from
-  basepath: '/basepath',
-  // files to ignore
-  ignore: [
-    'ignoreFile1.js', 'ignoreFile2.js'
-    ],
-  // files to change / keep index of new route names the same as files
-  change: {
-    file: [
-      'file1.js', 'file2.js'
-    ],
-    new: [
-      'newFile1Path', 'newFile2Path'
-    ],
-  }
+
+```js
+import NeuJS from 'neujs'
+
+const app = new NeuJS()
+
+app.get('/', (req, res) => {
+  res.send('Hello World')
 })
 
-// build the routes
-xRouter.build()
+app
+  .listen({})
+```
+
+
+### Adding Routers & Middleware:
+
+```js
+import NeuJS from 'neujs'
+import productRouter from './routes/products.js'
+import productMiddlewareFn from './middleware.js'
+import middlewareFn from './middleware.js'
+
+const app = new NeuJS()
+
+await app.use({
+  middleware: middlewareFn
+})
+
+await app.use({
+  path: '/products',
+  middleware: productMiddlewareFn,
+  router: productRouter
+})
+
+app
+  .listen({})
 ```
 
