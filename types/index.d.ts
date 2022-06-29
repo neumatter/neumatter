@@ -13,7 +13,7 @@ declare class NeuError extends Error {
   constructor (message: string, options?: NeuErrorOptions)
 }
 
-export declare interface NeuJSOptions {
+export declare interface NeumatterOptions {
   parseMethod?: string
   errorMiddleware?: (err: NeuError, req: NeuRequest, res: NeuResponse, next: () => any) => any
   proxy?: boolean
@@ -35,7 +35,7 @@ declare interface NeuJSUseOptions {
 }
 
 export declare class Neumatter {
-  constructor(options: NeuJSOptions)
+  constructor(options: NeumatterOptions)
 
   static get serverOptions (): {
     IncomingMessage: NeuRequest,
@@ -70,7 +70,7 @@ export declare class Neumatter {
   init (serverFn: typeof http.createServer): http.Server
   listen (options: { port?: number, host?: string }): http.Server
 
-  static createApp (options: NeuJSOptions): Neumatter
+  static createApp (options: NeumatterOptions): Neumatter
   static createRouter (options?: { isMain?: boolean, parseMethod?: string, prefix?: string }): NeuRouter
   static load (): Promise<Neumatter>
 
