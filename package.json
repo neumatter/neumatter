@@ -5,6 +5,9 @@
   "type": "module",
   "main": "index.js",
   "types": "./types/index.d.ts",
+  "repository": {
+    "url": "https://github.com/neumatter/neujs"
+  },
   "scripts": {
     "test": "./node_modules/.bin/standard",
     "load-test": "./node_modules/.bin/artillery run ./tests/load.yml"
