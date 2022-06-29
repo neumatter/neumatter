@@ -1,5 +1,5 @@
 
-# neumatter
+![plot](https://cdn.rawgit.com/Clyng57/neumatter/public/neumatter-logo-blackBG-01.svg)
 ![plot](https://img.shields.io/npm/v/neumatter?style=for-the-badge)
 ![plot](https://img.shields.io/npm/dt/neumatter?style=for-the-badge)
 <br />
