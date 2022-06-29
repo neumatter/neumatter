@@ -3,6 +3,8 @@
 ![plot](https://img.shields.io/npm/v/neumatter?style=for-the-badge)
 ![plot](https://img.shields.io/npm/dt/neumatter?style=for-the-badge)
 <br />
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
 A light-weight and quick http server framework. ES6 async/await and ECMAScript modules.
 
 
