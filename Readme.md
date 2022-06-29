@@ -1,6 +1,7 @@
 
-# @neumatter/neujs
-
+# neumatter
+[https://img.shields.io/npm/v/@neumatter/neujs?style=for-the-badge]
+[https://img.shields.io/npm/dt/@neumatter/neujs?style=for-the-badge]
 A light-weight and quick http server framework. ES6 async/await and ECMAScript modules.
 
 
@@ -31,7 +32,7 @@ A light-weight and quick http server framework. ES6 async/await and ECMAScript m
 ## Install
 
 ```console
-npm i @neumatter/neujs --save
+npm i neumatter --save
 ```
 
 <br />
@@ -78,7 +79,7 @@ npm i @neumatter/neujs --save
 - context: `object`
 - configureHeaders: `object`
 - viewer: `object`
-- logger: `LoggerOptions`
+- logger: { name, virtual }
 
 
 ```js
