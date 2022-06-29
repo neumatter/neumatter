@@ -85,3 +85,4 @@ examples/.DS_Store
 node_modules
 
 tests
+tests/
