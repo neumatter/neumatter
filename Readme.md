@@ -1,7 +1,7 @@
 
 ![plot](https://github.com/Clyng57/neumatter/raw/main/public/neumatter-logo-blackBG-01.svg)
-![plot](https://img.shields.io/npm/v/neumatter?style=for-the-badge)
-![plot](https://img.shields.io/npm/dt/neumatter?style=for-the-badge)
+![plot](https://img.shields.io/npm/v/neumatter?style=for-the-badge&labelColor=black)
+![plot](https://img.shields.io/npm/dt/neumatter?style=for-the-badge&labelColor=black)
 <br />
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
