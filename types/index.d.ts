@@ -34,7 +34,7 @@ declare interface NeuJSUseOptions {
   router: NeuRouter
 }
 
-export declare class NeuJS {
+export declare class Neumatter {
   constructor(options: NeuJSOptions)
 
   static get serverOptions (): {
@@ -56,13 +56,13 @@ export declare class NeuJS {
   root: string
   logger: Logger
 
-  get (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): NeuJS
-  post (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): NeuJS
-  put (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): NeuJS
-  delete (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): NeuJS
+  get (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): Neumatter
+  post (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): Neumatter
+  put (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): Neumatter
+  delete (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): Neumatter
   #errorListener (err: NeuError, request: NeuRequest, response: NeuResponse): Promise<any>|void
-  use (options: { path:  null, middleware: [(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any], router: NeuRouter }): Promise<NeuJS>
-  useMany (args: Array<NeuJSUseOptions>): Promise<NeuJS>
+  use (options: { path:  null, middleware: [(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any], router: NeuRouter }): Promise<Neumatter>
+  useMany (args: Array<NeuJSUseOptions>): Promise<Neumatter>
   #serveFile (request: NeuRequest, response: NeuResponse): any
   #transmit (request: NeuRequest, response: NeuResponse): Promise<any>
   #transmitter (request: NeuRequest, response: NeuResponse): Promise<any>
@@ -70,12 +70,12 @@ export declare class NeuJS {
   init (serverFn: typeof http.createServer): http.Server
   listen (options: { port?: number, host?: string }): http.Server
 
-  static createApp (options: NeuJSOptions): NeuJS
+  static createApp (options: NeuJSOptions): Neumatter
   static createRouter (options?: { isMain?: boolean, parseMethod?: string, prefix?: string }): NeuRouter
-  static load (): Promise<NeuJS>
+  static load (): Promise<Neumatter>
 
   static get name (): string
   static get version (): string
 }
 
-export default NeuJS
+export default Neumatter

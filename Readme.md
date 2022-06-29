@@ -86,9 +86,9 @@ npm i neumatter --save
 
 
 ```js
-import NeuJS from 'neujs'
+import Neumatter from 'neumatter'
 
-const app = new NeuJS()
+const app = new Neumatter()
 
 app.get('/', (req, res) => {
   res.send('Hello World')
@@ -102,12 +102,12 @@ app
 ### Adding Routers & Middleware:
 
 ```js
-import NeuJS from 'neujs'
+import Neumatter from 'neumatter'
 import productRouter from './routes/products.js'
 import productMiddlewareFn from './middleware.js'
 import middlewareFn from './middleware.js'
 
-const app = new NeuJS()
+const app = new Neumatter()
 
 await app.use({
   middleware: middlewareFn
