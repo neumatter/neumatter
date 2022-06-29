@@ -83,6 +83,3 @@ examples/.DS_Store
 .gitattributes
 
 node_modules
-
-tests
-tests/
