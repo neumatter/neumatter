@@ -125,7 +125,7 @@ await app.use({
 
 await app.use({
   path: '/products',
-  middleware: productMiddlewareFn,
+  middleware: [productMiddlewareFn],
   router: productRouter
 })
 
