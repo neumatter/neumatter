@@ -21,12 +21,15 @@ declare class NeuRoute {
   pathRegExp: RegExp
   methods: object
   stack: Array<any>
-  schema: object
 
-  get (routeHandler: (request: NeuRequest, response: NeuResponse, next: () => any) => any): NeuRoute
-  post (routeHandler: (request: NeuRequest, response: NeuResponse, next: () => any) => any): NeuRoute
-  put (routeHandler: (request: NeuRequest, response: NeuResponse, next: () => any) => any): NeuRoute
-  delete (routeHandler: (request: NeuRequest, response: NeuResponse, next: () => any) => any): NeuRoute
+  get (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  post (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  put (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  patch (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  trace (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  options (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  connect (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  delete (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
 
   #append (...args): void
 

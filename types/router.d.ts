@@ -29,13 +29,16 @@ declare class NeuRouter {
 
   transmitter (request: NeuRequest, response: NeuResponse): (request: NeuRequest, response: NeuResponse) => Promise<(request: NeuRequest, response: NeuResponse, routeHandler: () => any ) => any>
 
-  route (...args): NeuRoute
+  route (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
 
-  get (path: string, routeHandler: (request:NeuRequest, response:NeuResponse, next:() => any) => any): NeuRouter
-  post (path: string, routeHandler: (request:NeuRequest, response:NeuResponse, next:() => any) => any): NeuRouter
-  put (path: string, routeHandler: (request:NeuRequest, response:NeuResponse, next:() => any) => any): NeuRouter
-  delete (path: string, routeHandler: (request:NeuRequest, response:NeuResponse, next:() => any) => any): NeuRouter
-  search (path: string, routeHandler: (request:NeuRequest, response:NeuResponse, next:() => any) => any): NeuRouter
+  get (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  post (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  put (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  patch (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  trace (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  options (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  connect (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
+  delete (path: string, routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRouter
 }
 
 export default NeuRouter

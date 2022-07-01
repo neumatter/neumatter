@@ -43,6 +43,8 @@ npm i neumatter --save
 <a name="getting-started"></a>
 ## Getting Started
 
+There are two options, using a configuration file or by using the constructor.
+
 
 <a name="configuration-file"></a>
 ### Configuration File:
@@ -73,16 +75,24 @@ npm i neumatter --save
 
 - parseMethod: `string` Method that will be used to parse `NeuRequest.body`.
 - errorMiddleware: `function` Error Handler.
-- proxy: `boolean`
-- env: `string`
-- port: `number`
-- host: `string`
-- static: `string`
-- views: `string`
-- context: `object`
+- proxy: `boolean` Trust proxy.
+- env: `string` Often set as 'development' or 'production'.
+- port: `number` Port that the application will use.
+- host: `string` Hostname.
+- static: `string` Path to static folder that will be scoped to '/'.
+- context: `object` User defined object, that adds context to application.
 - configureHeaders: `object`
+- views: `string` Path to view folder.
 - viewer: `object`
-- logger: { name, virtual }
+- viewer.views: `string` Path to views folder.
+- viewer.layouts: `string` Path to layouts folder.
+- viewer.defaultData: `object` User defined object, that adds data by default to a rebdered view.
+- logger: `object`
+- logger.name: `string` Name of the logger.
+- logger.dir: `string` Path to folder to hold logs.
+- logger.cacheSize: `number` Max size of logs to cache before writing to logs.
+- logger.virtual: `boolean` If logger is virtual only.
+- logger.json: `boolean` If logger should use json.
 
 
 ```js
@@ -119,7 +129,6 @@ await app.use({
   router: productRouter
 })
 
-app
-  .listen({})
+app.listen({})
 ```
 
