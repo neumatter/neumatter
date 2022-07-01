@@ -14,7 +14,7 @@ declare class NeuRoute {
   prefix: string
   path: string
   unprefixed: string
-  parsedRoute: {
+  paramObj: {
     regexp: RegExp,
     params: boolean
   }

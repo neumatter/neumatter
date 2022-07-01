@@ -33,7 +33,7 @@ declare class NeuRequest extends IncomingMessage {
 
   #setParams (paramsObj: { params: boolean, regexp: RegExp }): Promise<this>
 
-  dispatch (parsedRoute: { params: boolean, regexp: RegExp }): Promise<void>
+  dispatch (paramObj: { params: boolean, regexp: RegExp }): Promise<void>
 
   set app (input: NeuJS)
 
