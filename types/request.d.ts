@@ -1,11 +1,11 @@
 import { IncomingMessage } from 'http'
 import { Socket } from 'net'
-import NeuJS from './index'
+import Neumatter from './index'
 
 declare class NeuRequest extends IncomingMessage {
   constructor (socket: Socket)
 
-  #app: NeuJS
+  app: Neumatter
   body: object
   routePath: string
   params: object
@@ -31,13 +31,9 @@ declare class NeuRequest extends IncomingMessage {
   get URL (): URL
   get searchParams (): URL['searchParams']
 
-  #setParams (paramsObj: { params: boolean, regexp: RegExp }): Promise<this>
+  #setParams (hasParams: boolean, regexp: RegExp): Promise<this>
 
-  dispatch (paramObj: { params: boolean, regexp: RegExp }): Promise<void>
-
-  set app (input: NeuJS)
-
-  get app (): NeuJS
+  dispatch (hasParams: boolean, regexp: RegExp): Promise<void>
 
   emitErr: (...rest: Array<any>) => any
   isValidEmail: (email: string, message: string, subject: string) => Promise<object>

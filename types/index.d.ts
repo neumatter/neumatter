@@ -23,7 +23,13 @@ export declare interface NeumatterOptions {
   static?: string
   views?: string
   context?: object
-  configureHeaders?: object
+  configureHeaders?: {
+    referrer?: string
+    securityPolicy?: string
+    strictTransportSecurity?: boolean
+    xContentTypeOptions?: boolean
+    vary?: string
+  }
   viewer?: object
   logger?: LoggerOptions
 }
@@ -37,10 +43,14 @@ declare interface NeuJSUseOptions {
 export declare class Neumatter {
   constructor(options: NeumatterOptions)
 
+  static Logger: Logger
+  static Router: NeuRouter
+
   static get serverOptions (): {
     IncomingMessage: NeuRequest,
     ServerResponse: NeuResponse
   }
+
   router: NeuRouter
   context: object
   middlewareTable: NeuMiddleware
@@ -77,7 +87,7 @@ export declare class Neumatter {
   #serveFile (request: NeuRequest, response: NeuResponse): any
   #transmit (request: NeuRequest, response: NeuResponse): Promise<any>
   #transmitter (request: NeuRequest, response: NeuResponse): Promise<any>
-  loadListener (): (request: NeuRequest, response: NeuResponse) => Promise<any>
+  listener (): (request: NeuRequest, response: NeuResponse) => Promise<any>
   init (serverFn: typeof http.createServer): http.Server
   listen (options: { port?: number, host?: string }): http.Server
 

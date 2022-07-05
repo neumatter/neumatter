@@ -1,6 +1,17 @@
 import NeuRequest from './request'
 import NeuResponse from './response'
 
+
+declare interface NextFunction {
+  (err?: Error|any): void
+}
+
+declare interface HandleRoute {
+  (request: NeuRequest, response: NeuResponse, next?: NextFunction): void
+}
+
+declare type RouteHandler = Array<HandleRoute>|HandleRoute
+
 declare class NeuRoute {
   constructor (options: {
     middleware: Array<Function>,
@@ -14,22 +25,19 @@ declare class NeuRoute {
   prefix: string
   path: string
   unprefixed: string
-  paramObj: {
-    regexp: RegExp,
-    params: boolean
-  }
+  hasParams: boolean
   pathRegExp: RegExp
   methods: object
   stack: Array<any>
 
-  get (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  post (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  put (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  patch (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  trace (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  options (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  connect (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
-  delete (routeHandler: Array<(request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: Error) => any) => any)): NeuRoute
+  get (routeHandler: RouteHandler): NeuRoute
+  post (routeHandler: RouteHandler): NeuRoute
+  put (routeHandler: RouteHandler): NeuRoute
+  patch (routeHandler: RouteHandler): NeuRoute
+  trace (routeHandler: RouteHandler): NeuRoute
+  options (routeHandler: RouteHandler): NeuRoute
+  connect (routeHandler: RouteHandler): NeuRoute
+  delete (routeHandler: RouteHandler): NeuRoute
 
   #append (...args): void
 

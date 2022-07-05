@@ -28,6 +28,59 @@ A light-weight and quick http server framework. ES6 async/await and ECMAScript m
 - [ Getting Started ](#getting-started)
     - [ Configuration File ](#configuration-file)
     - [ Constructor ](#constructor)
+- [ Neumatter/App ](#neumatter)
+    - [ (method) `neumatter.use` ](#use)
+    - [ (method) `neumatter.useMany` ](#use-many)
+    - [ (method) `neumatter.listen` ](#listen)
+    - [ (method) `neumatter.listener` ](#listener)
+    - [ (method) `neumatter.init` ](#init)
+    - [ (method) `neumatter['METHOD']` ](#app-method)
+    - [ (method) `Neumatter.load` ](#load)
+    - [ (prop) `Neumatter.Logger` ](#logger)
+    - [ (prop) `Neumatter.Router` ](#app-router)
+    - [ (getter) `Neumatter.serverOptions` ](#server-options)
+- [ NeuRouter ](#neurouter)
+    - [ `constructor` ](#router-constructor)
+    - [ (method) `router.route` ](#router-route)
+    - [ (method) `router.transmitter` ](#router-transmitter)
+    - [ (method) `router['METHOD']` ](#router-method)
+- [ NeuRoute ](#neuroute)
+    - [ `constructor` ](#route-constructor)
+    - [ (method) `route['METHOD']` ](#route-method)
+- [ NeuRequest ](#neurequest)
+    - [ (method) `request.header` ](#request-header)
+    - [ (method) `request.emitErr` ](#request-emitErr)
+    - [ (method) `request.isValidEmail` ](#request-isValidEmail)
+    - [ (getter) `request.protocol` ](#request-protocol)
+    - [ (getter) `request.isSecure` ](#request-isSecure)
+    - [ (getter) `request.host` ](#request-host)
+    - [ (getter) `request.hostname` ](#request-hostname)
+    - [ (getter) `request.port` ](#request-port)
+    - [ (getter) `request.path` ](#request-path)
+    - [ (getter) `request.query` ](#request-query)
+    - [ (getter) `request.href` ](#request-href)
+    - [ (getter) `request.ip` ](#request-ip)
+    - [ (getter) `request.URL` ](#request-URL)
+    - [ (getter) `request.searchParams` ](#request-searchParams)
+    - [ (prop) `request.params` ](#request-params)
+    - [ (prop) `request.app` ](#request-app)
+- [ NeuResponse ](#neuresponse)
+    - [ (method) `response.get` ](#response-get)
+    - [ (method) `response.set` ](#response-set)
+    - [ (method) `response.status` ](#response-status)
+    - [ (method) `response.redirect` ](#response-redirect)
+    - [ (method) `response.send` ](#response-send)
+    - [ (method) `response.json` ](#response-json)
+    - [ (method) `response.html` ](#response-html)
+    - [ (method) `response.download` ](#response-download)
+    - [ (method) `response.file` ](#response-file)
+    - [ (method) `response.render` ](#response-render)
+    - [ (getter) `response.sent` ](#response-sent)
+    - [ (getter) `response.isHead` ](#response-isHead)
+    - [ (getter) `response.hasContentLength` ](#response-hasContentLength)
+    - [ (prop) `response.hasType` ](#response-hasType)
+    - [ (prop) `response.locals` ](#response-locals)
+    - [ (prop) `response.viewer` ](#response-viewer)
 
 <br />
 
@@ -47,14 +100,17 @@ There are two options, using a configuration file or by using the constructor.
 
 
 <a name="configuration-file"></a>
-### Configuration File:
+### Configuration File: `neumatter.config.json` in root folder.
+
+`"env"` is the options object, that will be passed to the constructor.
+`"routes"` required. path to routes/pages directory.
+`"middleware"` optional. path to middleware directory.
 
 ```json
 {
   "env": {
-    "port": 3004,
+    "port": 8080,
     "static": "./public",
-    "context": "testCTX",
     "viewer": {
       "views": "./views",
       "blocks": "./views/blocks",
@@ -64,6 +120,14 @@ There are two options, using a configuration file or by using the constructor.
   "middleware": "./server/middleware",
   "routes": "./server/routes"
 }
+```
+```js
+import Neumatter from 'neumatter'
+
+// loads the configuration and returns Promise<Neumatter>
+const app = await Neumatter.load()
+
+app.listen()
 ```
 
 
@@ -104,8 +168,7 @@ app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
-app
-  .listen({})
+app.listen()
 ```
 
 
@@ -120,7 +183,7 @@ import middlewareFn from './middleware.js'
 const app = new Neumatter()
 
 await app.use({
-  middleware: middlewareFn
+  middleware: [middlewareFn]
 })
 
 await app.use({
@@ -129,6 +192,11 @@ await app.use({
   router: productRouter
 })
 
-app.listen({})
+app.listen()
 ```
+
+<br />
+
+<a name="neumatter"></a>
+## Neumatter/App
 
