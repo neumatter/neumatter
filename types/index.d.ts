@@ -82,7 +82,7 @@ export declare class Neumatter {
 
 
   #errorListener (err: NeuError, request: NeuRequest, response: NeuResponse): Promise<any>|void
-  use (options: { path:  null, middleware: [(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any], router: NeuRouter }): Promise<Neumatter>
+  use (options: { path: string|null, middleware: [(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any], router: NeuRouter }): Promise<Neumatter>
   useMany (args: Array<NeuJSUseOptions>): Promise<Neumatter>
   #serveFile (request: NeuRequest, response: NeuResponse): any
   #transmit (request: NeuRequest, response: NeuResponse): Promise<any>

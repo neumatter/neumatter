@@ -200,3 +200,17 @@ app.listen()
 <a name="neumatter"></a>
 ## Neumatter/App
 
+
+<a name="constructor"></a>
+### `neumatter.use(data: { path, middleware, router })`
+
+- `data.path`: `string|null`
+- `data.middleware`: `Array<MiddlewareFn>`
+- Support for global fetch.
+- Built in support for using dot env files.
+- Built in configurable headers.
+- Built in logger.
+- Support for file-based routing.
+- Can add replacer to file-based routing.
+- Async/Await.
+- Centralized error handling.
