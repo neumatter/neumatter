@@ -38,15 +38,15 @@
   ],
   "dependencies": {
     "@neumatter/is": "^1.1.1",
-    "@neumatter/record": "^1.0.6",
-    "@neumatter/utils": "^1.0.4",
+    "@neumatter/record": "^1.0.7",
+    "@neumatter/utils": "^1.0.6",
     "chroma-palette": "^1.2.2",
     "code-batch": "^1.0.0",
-    "neupack": "^1.0.2",
+    "neupack": "^1.1.0",
     "node-fetch": "^3.2.6"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.17.0",
+    "@babel/eslint-parser": "^7.18.2",
     "@types/node": "^17.0.23",
     "standard": "^16.0.4"
   },
