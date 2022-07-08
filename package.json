@@ -1,16 +1,12 @@
 {
   "name": "neumatter",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0",
   "description": "A light-weight and quick http server framework. ES6.",
   "type": "module",
   "main": "index.js",
   "types": "./types/index.d.ts",
   "repository": {
     "url": "https://github.com/neumatter/neujs"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/standard",
-    "load-test": "./node_modules/.bin/artillery run ./tests/load.yml"
   },
   "author": "Cal Young",
   "license": "MIT",
