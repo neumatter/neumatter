@@ -5,7 +5,7 @@
 <br />
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
-A light-weight and quick http server framework. ES6 async/await and ECMAScript modules.
+A quick http server framework. ES6 async/await and ECMAScript modules.
 
 
 ## Features:
@@ -28,6 +28,7 @@ A light-weight and quick http server framework. ES6 async/await and ECMAScript m
 - [ Getting Started ](#getting-started)
     - [ Configuration File ](#configuration-file)
     - [ Constructor ](#constructor)
+- [ Middleware ](#middleware)
 - [ Neumatter/App ](#neumatter)
     - [ (method) `neumatter.use` ](#use)
     - [ (method) `neumatter.useMany` ](#use-many)
@@ -48,7 +49,7 @@ A light-weight and quick http server framework. ES6 async/await and ECMAScript m
     - [ `constructor` ](#route-constructor)
     - [ (method) `route['METHOD']` ](#route-method)
 - [ NeuRequest ](#neurequest)
-    - [ (method) `request.header` ](#request-header)
+    - [ (method) `request.get` ](#request-get)
     - [ (method) `request.emitErr` ](#request-emitErr)
     - [ (method) `request.isValidEmail` ](#request-isValidEmail)
     - [ (getter) `request.protocol` ](#request-protocol)
@@ -197,20 +198,213 @@ app.listen()
 
 <br />
 
+<a name="middleware"></a>
+## Middleware
+
+
+### `MiddlewareFn: (request, response, next)`
+
+- `request`: `NeuRequest`
+- `response`: `NeuResponse`
+- `next`: `NextFunction`
+
+```js
+const middlewareFn = (req, res, next) => {
+  // do something
+  next() // call NextFunction
+}
+```
+
+
+### `ResponseFn: (request, response, next?)`
+
+- `request`: `NeuRequest`
+- `response`: `NeuResponse`
+- `next`: `NextFunction`
+
+```js
+const responseFn = (req, res) => {
+  // do something
+  res.json({ data: 'Hello World!' }) // send response
+}
+```
+
+<br />
+
 <a name="neumatter"></a>
 ## Neumatter/App
 
 
-<a name="constructor"></a>
-### `neumatter.use(data: { path, middleware, router })`
+<a name="use"></a>
+### `neumatter.use(data: { path?, middleware, router? })`
 
 - `data.path`: `string|null`
 - `data.middleware`: `Array<MiddlewareFn>`
-- Support for global fetch.
-- Built in support for using dot env files.
-- Built in configurable headers.
-- Built in logger.
-- Support for file-based routing.
-- Can add replacer to file-based routing.
-- Async/Await.
-- Centralized error handling.
+- `data.router`: `NeuRouter`
+
+```js
+import Neumatter from 'neumatter'
+import productRouter from './routes/products.js'
+
+const app = new Neumatter()
+
+const middlewareFn = (req, res, next) => {
+  // do something
+  next() // call NextFunction
+}
+
+await app.use({
+  middleware: [middlewareFn]
+})
+
+await app.use({
+  path: '/products',
+  middleware: [middlewareFn],
+  router: productRouter
+})
+```
+
+
+<a name="use-many"></a>
+### `neumatter.useMany(prop: [data: { path?, middleware, router? }])`
+
+- `prop`: `Array<data>`
+- `data.path`: `string|null`
+- `data.middleware`: `Array<MiddlewareFn>`
+- `data.router`: `NeuRouter`
+
+```js
+import Neumatter from 'neumatter'
+import productRouter from './routes/products.js'
+
+const app = new Neumatter()
+
+const middlewareFn = (req, res, next) => {
+  // do something
+  next() // call NextFunction
+}
+
+await app.useMany([
+  {
+    middleware: [middlewareFn]
+  },
+  {
+    path: '/products',
+    middleware: [middlewareFn],
+    router: productRouter
+  }
+])
+```
+
+
+<a name="listen"></a>
+### `neumatter.listen(options?: { port?, host? })`
+
+- `options.port`: `number` Port that the server will run on.
+- `options.host`: `string` Set the servers host. Defaults to localhost.
+
+
+<a name="listener"></a>
+### `neumatter.listener()`
+
+The function that will be called on server requests. Creating a server and using the function manually will skip the `neumatter.init` function.
+
+```js
+import Neumatter from 'neumatter'
+import http from 'http'
+
+const app = new Neumatter()
+
+const server = http.createServer(Neumatter.serverOptions, app.listener())
+```
+
+
+<a name="init"></a>
+### `neumatter.init(serverFn)`
+
+- `serverFn`: `typeof http.createServer`
+
+```js
+import Neumatter from 'neumatter'
+import http from 'http'
+
+const app = new Neumatter()
+
+const server = app.init(http.createServer)
+```
+
+
+<a name="app-method"></a>
+### `neumatter['METHOD'](path, middlewareFn|responseFn)`
+
+- `path`: `string` Path for url lookup.
+- `middlewareFn|responseFn`: `MiddlewareFn|Array<MiddlewareFn>|ResponseFn`
+- `METHODS`:
+    - `get`
+    - `post`
+    - `put`
+    - `patch`
+    - `trace`
+    - `options`
+    - `connect`
+    - `delete`
+
+```js
+import Neumatter from 'neumatter'
+import http from 'http'
+
+const app = new Neumatter()
+
+app.get('/', (req, res) => {
+  res.json({ data: 'Hello World!' })
+})
+
+app.post('/page',
+  (req, res, next) => {
+    if (!req.body.name) res.redirect('/')
+    next()
+  },
+  (req, res) => {
+    // do something
+    res.send('success')
+  }
+)
+```
+
+
+<a name="load"></a>
+### `Neumatter.load()`
+
+The function to load the configuration file and return the application.
+
+```js
+import Neumatter from 'neumatter'
+
+const app = await Neumatter.load()
+
+app.listen()
+```
+
+
+<a name="logger"></a>
+### `Neumatter.Logger`
+
+The class that can be used to create a new Logger instance.
+
+```js
+import Neumatter from 'neumatter'
+
+const logger = new Neumatter.Logger({ virtual: true })
+```
+
+
+<a name="app-router"></a>
+### `Neumatter.Router`
+
+The class that can be used to create a new Router instance.
+
+```js
+import Neumatter from 'neumatter'
+
+const router = new Neumatter.Router()
+```
