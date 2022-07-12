@@ -43,8 +43,8 @@ declare interface NeuJSUseOptions {
 export declare class Neumatter {
   constructor(options: NeumatterOptions)
 
-  static Logger: Logger
-  static Router: NeuRouter
+  static Logger: typeof Logger
+  static Router: typeof NeuRouter
 
   static get serverOptions (): {
     IncomingMessage: NeuRequest,
@@ -65,6 +65,8 @@ export declare class Neumatter {
   parseMethod: string
   root: string
   logger: Logger
+  staticMap: {}
+  viewer: null|{}
 
   get (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): Neumatter
   post (path: string, RequestHandlers: Array<(request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any>|((request: NeuRequest, response: NeuResponse, next: (err?: NeuError) => any) => any)): Neumatter
