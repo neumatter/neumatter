@@ -16,9 +16,6 @@ declare interface HandleErrorRoute {
   (err: Error|any, request: NeuRequest, response: NeuResponse, next?: NextFunction): void
 }
 
-declare type RouteHandler = Array<HandleRoute>|HandleRoute
-
-
 declare class NeuRouter {
   constructor (options?: { isMain?: boolean, parseMethod?: string, prefix?: string })
   isMain: boolean
@@ -43,14 +40,14 @@ declare class NeuRouter {
 
   route (path: string): NeuRoute
 
-  get (path: string, routeHandler: RouteHandler): NeuRouter
-  post (path: string, routeHandler: RouteHandler): NeuRouter
-  put (path: string, routeHandler: RouteHandler): NeuRouter
-  patch (path: string, routeHandler: RouteHandler): NeuRouter
-  trace (path: string, routeHandler: RouteHandler): NeuRouter
-  options (path: string, routeHandler: RouteHandler): NeuRouter
-  connect (path: string, routeHandler: RouteHandler): NeuRouter
-  delete (path: string, routeHandler: RouteHandler): NeuRouter
+  get (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  post (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  put (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  patch (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  trace (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  options (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  connect (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
+  delete (path: string, ...routeHandler: Array<HandleRoute>): NeuRouter
 }
 
 export default NeuRouter

@@ -10,8 +10,6 @@ declare interface HandleRoute {
   (request: NeuRequest, response: NeuResponse, next?: NextFunction): void
 }
 
-declare type RouteHandler = Array<HandleRoute>|HandleRoute
-
 declare class NeuRoute {
   constructor (options: {
     middleware: Array<Function>,
@@ -30,14 +28,14 @@ declare class NeuRoute {
   methods: object
   stack: Array<any>
 
-  get (routeHandler: RouteHandler): NeuRoute
-  post (routeHandler: RouteHandler): NeuRoute
-  put (routeHandler: RouteHandler): NeuRoute
-  patch (routeHandler: RouteHandler): NeuRoute
-  trace (routeHandler: RouteHandler): NeuRoute
-  options (routeHandler: RouteHandler): NeuRoute
-  connect (routeHandler: RouteHandler): NeuRoute
-  delete (routeHandler: RouteHandler): NeuRoute
+  get (...routeHandler: Array<HandleRoute>): NeuRoute
+  post (...routeHandler: Array<HandleRoute>): NeuRoute
+  put (...routeHandler: Array<HandleRoute>): NeuRoute
+  patch (...routeHandler: Array<HandleRoute>): NeuRoute
+  trace (...routeHandler: Array<HandleRoute>): NeuRoute
+  options (...routeHandler: Array<HandleRoute>): NeuRoute
+  connect (...routeHandler: Array<HandleRoute>): NeuRoute
+  delete (...routeHandler: Array<HandleRoute>): NeuRoute
 
   #append (...args): void
 

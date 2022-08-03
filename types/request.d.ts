@@ -6,6 +6,7 @@ declare class NeuRequest extends IncomingMessage {
   body: object
   params: object
   app: Neumatter
+  searchParams: URLSearchParams
 
   constructor (socket: Socket)
 
@@ -21,7 +22,6 @@ declare class NeuRequest extends IncomingMessage {
   get href (): string
   get ip (): string|undefined
   get URL (): URL
-  get searchParams (): URL['searchParams']
 
   #setParams (hasParams: boolean, regexp: RegExp): Promise<NeuRequest>
 
