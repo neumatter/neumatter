@@ -1,6 +1,6 @@
 {
   "name": "neumatter",
-  "version": "1.0.17",
+  "version": "1.1.4",
   "description": "A light-weight and quick http server framework. ES6.",
   "type": "module",
   "main": "index.js",
@@ -34,11 +34,13 @@
   ],
   "dependencies": {
     "@neumatter/is": "^1.1.1",
-    "@neumatter/record": "^1.0.7",
+    "@neumatter/record": "^1.0.8",
+    "byteview": "^1.0.12",
     "chroma-palette": "^1.2.2",
     "code-batch": "^1.0.0",
     "neupack": "^1.1.0",
-    "node-fetch": "^3.2.6"
+    "node-fetch": "^3.2.6",
+    "parse-multipart-data": "^1.5.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
