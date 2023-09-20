@@ -83,3 +83,6 @@ examples/.DS_Store
 .gitattributes
 
 node_modules
+test/index.js
+test/localhost-cert.pem
+test/localhost-privkey.pem
